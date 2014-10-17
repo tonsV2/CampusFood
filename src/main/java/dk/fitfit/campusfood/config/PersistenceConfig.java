@@ -21,7 +21,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class PersistenceConfig {
 	private static final Logger logger = LoggerFactory.getLogger(PersistenceConfig.class);
 
-	private final String packagesToScan = "dk.fitfit.campusfood.model";
+	private final String packagesToScan = "dk.fitfit.campusfood.*";
+//	private final String packagesToScan = "dk.fitfit.campusfood.model";
+//	private final String[] packagesToScan = new String[] { "dk.fitfit.campusfood.model", "dk.fitfit.campusfood.repository" };
 
 	public PersistenceConfig() {
 		logger.info("Persistence config loaded!");
