@@ -1,4 +1,4 @@
-package dk.fitfit.campusfood;
+package dk.fitfit.campusfood.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

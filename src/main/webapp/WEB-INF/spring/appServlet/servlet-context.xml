@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="dk.fitfit.campusfood" />
+	<context:component-scan base-package="dk.fitfit.campusfood.*" />
 	
 	
 	
