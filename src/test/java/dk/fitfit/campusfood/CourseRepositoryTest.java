@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.UUID;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +23,21 @@ public class CourseRepositoryTest {
 
 	@Autowired
 	CourseRepository courseRepository;
-	
-	@Test
-	public void insertTest() {
-		// Generate unique name
-		final String name = UUID.randomUUID().toString();
+	private String courseName;
+	private Course course;
+
+	@Before
+	public void setUp() {
+		// Generate unique random name
+		courseName = UUID.randomUUID().toString();
 
 		// Create new canteen
-		Course course = new Course();
-		course.setName(name);
+		course = new Course();
+		course.setName(courseName);
+	}
 
+	@Test
+	public void insertTest() {
 		// Save canteen
 		courseRepository.save(course);
 
@@ -39,6 +46,14 @@ public class CourseRepositoryTest {
 
 		// Confirm attributes are as expected
 		assertNotNull(c);
-		assertEquals(name, c.getName());
+		assertEquals(courseName, c.getName());
 	}
+	
+	@After
+	public void tearDown() {
+		courseRepository = null;
+		course = null;
+		courseName = null;
+	}
+
 }
