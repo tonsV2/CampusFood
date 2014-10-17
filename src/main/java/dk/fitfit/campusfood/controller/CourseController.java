@@ -29,8 +29,8 @@ public class CourseController {
 	private CourseRepository courseRepository;
 
 	@RequestMapping(value = "/course", method = RequestMethod.GET)
-	public ModelAndView addCourse() {
-		return new ModelAndView("addCourse", "course", new Course());
+	public ModelAndView courseAdd() {
+		return new ModelAndView("courseAdd", "course", new Course());
 	}
 
 	@RequestMapping(value = {"/course"}, method = RequestMethod.POST)
@@ -45,14 +45,14 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/course/{id}", method = RequestMethod.GET)
-	public String showCourse(Model model, @PathVariable long id) {
+	public String courseDetails(Model model, @PathVariable long id) {
 		model.addAttribute("course", courseRepository.findOne(id));
 		return "courseDetails";
 	}
 
 	@RequestMapping(value = "/courses", method = RequestMethod.GET)
-	public ModelAndView listCourses(Locale locale, Model model) {
-		return new ModelAndView("course", "courses", courseRepository.findAll());
+	public ModelAndView courseList(Locale locale, Model model) {
+		return new ModelAndView("courseList", "courses", courseRepository.findAll());
 	}
 
 }

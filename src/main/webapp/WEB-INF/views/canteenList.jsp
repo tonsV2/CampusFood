@@ -11,5 +11,8 @@
 				<a href="<c:url value="/canteen/${canteen.id}" />">Details</a>
 			</div>
 		</c:forEach>
+		<hr />
+		<a href="<c:url value="/canteen" />">Add canteen</a>
+		
 	</body>
 </html>

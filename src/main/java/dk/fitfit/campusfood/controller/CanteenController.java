@@ -29,8 +29,8 @@ public class CanteenController {
 	private CanteenRepository canteenRepository;
 
 	@RequestMapping(value = "/canteen", method = RequestMethod.GET)
-	public ModelAndView addCanteen() {
-		return new ModelAndView("addCanteen", "canteen", new Canteen());
+	public ModelAndView canteenAdd() {
+		return new ModelAndView("canteenAdd", "canteen", new Canteen());
 	}
 
 	@RequestMapping(value = {"/canteen"}, method = RequestMethod.POST)
@@ -45,14 +45,14 @@ public class CanteenController {
 	}
 
 	@RequestMapping(value = "/canteen/{id}", method = RequestMethod.GET)
-	public String showRestaurant(Model model, @PathVariable long id) {
+	public String canteenDetails(Model model, @PathVariable long id) {
 		model.addAttribute("canteen", canteenRepository.findOne(id));
 		return "canteenDetails";
 	}
 
 	@RequestMapping(value = "/canteens", method = RequestMethod.GET)
-	public ModelAndView canteen(Locale locale, Model model) {
-		return new ModelAndView("canteen", "canteens", canteenRepository.findAll());
+	public ModelAndView canteenList(Locale locale, Model model) {
+		return new ModelAndView("canteenList", "canteens", canteenRepository.findAll());
 	}
 
 }
