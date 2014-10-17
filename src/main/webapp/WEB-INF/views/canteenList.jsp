@@ -8,7 +8,8 @@
 		<c:forEach var="canteen" items="${canteens}">
 			<div>
 				<h3><c:out value="${canteen.name}" /></h3>
-				<a href="<c:url value="/canteen/${canteen.id}" />">Details</a>
+				<a href="<c:url value="/canteen/${canteen.id}" />">Details</a> | 
+				<a href="<c:url value="/canteen/${canteen.id}/course" />">Courses</a>
 			</div>
 		</c:forEach>
 		<hr />

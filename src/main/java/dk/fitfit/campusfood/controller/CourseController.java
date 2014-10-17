@@ -18,9 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import dk.fitfit.campusfood.model.Course;
 import dk.fitfit.campusfood.repository.CourseRepository;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class CourseController {
 	private static final Logger logger = LoggerFactory.getLogger(CanteenController.class);
@@ -53,6 +51,12 @@ public class CourseController {
 	@RequestMapping(value = "/courses", method = RequestMethod.GET)
 	public ModelAndView courseList(Locale locale, Model model) {
 		return new ModelAndView("courseList", "courses", courseRepository.findAll());
+	}
+
+	@RequestMapping(value = "/canteen/{id}/course", method = RequestMethod.GET)
+	public String coursesByCanteen(Model model, @PathVariable long id) {
+		model.addAttribute("courses", courseRepository.findByCanteenId(id));
+		return "courseList";
 	}
 
 }

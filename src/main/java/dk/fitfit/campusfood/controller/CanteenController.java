@@ -18,9 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import dk.fitfit.campusfood.model.Canteen;
 import dk.fitfit.campusfood.repository.CanteenRepository;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class CanteenController {
 	private static final Logger logger = LoggerFactory.getLogger(CanteenController.class);

@@ -92,6 +92,8 @@ public class Canteen extends BaseEntity {
 
 	public boolean addCourse(Course course)
 	{
+		// TODO: is this right?
+		course.setCanteen(this);
 		return getCourses().add(course);
 	}
 

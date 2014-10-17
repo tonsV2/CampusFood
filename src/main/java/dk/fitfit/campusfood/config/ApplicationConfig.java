@@ -13,7 +13,7 @@ public class ApplicationConfig {
 	public ApplicationConfig() {
 		logger.info("Application config loaded!");
 
-		DataInitializer dataInitializer = new DataInitializer();
-		dataInitializer.initialize();
+//		DataInitializer dataInitializer = new DataInitializer();
+//		dataInitializer.initialize();
 	}
 }
