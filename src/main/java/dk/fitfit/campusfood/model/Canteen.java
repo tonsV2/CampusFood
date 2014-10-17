@@ -36,6 +36,24 @@ public class Canteen extends BaseEntity {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Course> courses = new HashSet<>();
 
+	public Canteen() {
+	}
+
+	public Canteen(String name, String address, String openingHours, String contact) {
+		this.name = name;
+		this.address = address;
+		this.openingHours = openingHours;
+		this.contact = contact;
+	}
+
+	public Canteen(String name, String address, String openingHours, String contact, Set<Course> courses) {
+		this.name = name;
+		this.address = address;
+		this.openingHours = openingHours;
+		this.contact = contact;
+		this.courses = courses;
+	}
+
 
 	public String getName() {
 		return name;
