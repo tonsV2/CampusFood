@@ -1,9 +1,20 @@
 package dk.fitfit.campusfood.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Entity
 public class Canteen extends BaseEntity {
+	private static final Logger logger = LoggerFactory.getLogger(Canteen.class);
+
 	private String name;
 
 	// TODO: https://schuchert.wikispaces.com/JPA+Tutorial+1+-+Embedded+Entity
@@ -21,6 +32,10 @@ public class Canteen extends BaseEntity {
 									// Fredag - Lørdag 10-24
 									// Søndag 11-20</pre>
 	private String contact;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Course> courses = new HashSet<>();
+
 
 	public String getName() {
 		return name;
@@ -48,5 +63,48 @@ public class Canteen extends BaseEntity {
 	}
 	public void setContact(String contact) {
 		this.contact = contact;
+	}
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+
+	public boolean addCourse(Course course)
+	{
+		return getCourses().add(course);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Canteen other = (Canteen) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 }
