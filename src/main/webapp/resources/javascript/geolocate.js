@@ -2,6 +2,13 @@
  * Stolen from https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
  */
 
+$(function() {
+	$('body').attr('onload', 'initialize();');
+
+	$('#address').attr('onfocus', 'geolocate();');
+	$('#address').attr('onkeypress', 'enterKeyPressDontSubmit(event);;');
+});
+
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
