@@ -8,13 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Canteen extends BaseEntity {
-	private static final Logger logger = LoggerFactory.getLogger(Canteen.class);
-
 	private String name;
 
 	// TODO: https://schuchert.wikispaces.com/JPA+Tutorial+1+-+Embedded+Entity
@@ -83,6 +80,7 @@ public class Canteen extends BaseEntity {
 		this.contact = contact;
 	}
 
+	@JsonIgnore // Prevents infinite recursion
 	public Set<Meal> getMeals() {
 		return meals;
 	}
