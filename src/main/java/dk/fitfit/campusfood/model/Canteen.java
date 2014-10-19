@@ -30,6 +30,7 @@ public class Canteen extends BaseEntity {
 									// Søndag 11-20</pre>
 	private String contact;
 
+	// TODO: wont eager fetching return some very big objects when lots of meals are present?
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Meal> meals = new HashSet<>();
 
