@@ -49,10 +49,10 @@ public class PersistenceConfig {
 		logger.info("penv.snot: {}", env.getProperty("jdbc.host"));
 	}
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+//	@Bean
+//	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+//		return new PropertySourcesPlaceholderConfigurer();
+//	}
 
 	@Bean
 	public DataSource dataSource() {
