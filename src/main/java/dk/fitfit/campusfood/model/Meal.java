@@ -3,6 +3,7 @@ package dk.fitfit.campusfood.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 import dk.fitfit.campusfood.utils.DateUtil;
@@ -12,9 +13,9 @@ public class Meal extends BaseEntity {
 	private String name;
 	private Date dateOfServing;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Canteen canteen;
-	
+
 	public String getName() {
 		return name;
 	}
