@@ -1,30 +1,28 @@
-package dk.fitfit.campusfood.config;
+package dk.fitfit.campusfood.utils;
 
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Import;
 
+import dk.fitfit.campusfood.config.PersistenceConfig;
 import dk.fitfit.campusfood.model.Canteen;
 import dk.fitfit.campusfood.model.Course;
 import dk.fitfit.campusfood.repository.CanteenRepository;
-import dk.fitfit.campusfood.repository.CourseRepository;
 
-@Service
+@Import(PersistenceConfig.class)	// Without the import CanteenRepository isn't found
 public class DataInitializer {
 
 	@Autowired
 	private CanteenRepository canteenRepository;
 
-	@Autowired
-	private CourseRepository courseRepository;
-
 	public DataInitializer() {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>DataInitializer!!!");
 	}
 
 	public void initialize()
 	{
-		String name = "Kantinen i Biocenter";
+		String name = "Kantinen i something";
 		String address = "Somewhere 4";
 		String openingHours = "Mandag til torsdag 8:00 - 15:00. Fredag 8:00 - 14:30\nMorgenmad 8:00 - 9:30\nFrokost 11:00 - 14:00";
 		String contact = "Kontakt... someone.";
@@ -40,9 +38,6 @@ public class DataInitializer {
 		course1.setDateOfServing(new Date());
 		canteen.addCourse(course1);
 
-		// TODO: fix autowiring
-//		Canteen c = canteenRepository.save(canteen);
-
+		Canteen c = canteenRepository.save(canteen);
 	}
-
 }

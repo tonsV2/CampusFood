@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+import dk.fitfit.campusfood.utils.DateUtil;
+
 @Entity
 public class Course extends BaseEntity {
 	private String name;
@@ -24,7 +26,8 @@ public class Course extends BaseEntity {
 		return dateOfServing;
 	}
 	public void setDateOfServing(Date dateOfServing) {
-		this.dateOfServing = dateOfServing;
+		// TODO: is this ok? DateUtil.removeTime that is...
+		this.dateOfServing = DateUtil.removeTime(dateOfServing);
 	}
 
 	public Canteen getCanteen() {

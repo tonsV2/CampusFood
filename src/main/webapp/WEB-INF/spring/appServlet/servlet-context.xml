@@ -22,7 +22,5 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="dk.fitfit.campusfood.*" />
-	
-	
-	
+
 </beans:beans>

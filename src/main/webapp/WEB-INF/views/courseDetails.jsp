@@ -2,7 +2,8 @@
 
 <div>
 	<h3>${course.name}</h3>
-	<p>${course.dateOfServing}</p>
+	<p>date: ${course.dateOfServing}</p>
+	<p>canteen: ${course.canteen.name}</p>
 </div>
 <hr />
 <a href="<c:url value="/canteens" />">List canteens</a>

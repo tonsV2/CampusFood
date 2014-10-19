@@ -18,7 +18,7 @@ label {
 	text-align: left;
 }
 
-input, textarea {
+input, textarea, select {
 	display: inline-block;
 	float: left;
 }
@@ -30,12 +30,20 @@ input[type="submit"] {
 	</head>
 	<body>
 
+		<h3>Add course</h3>
 		<form:form method="post" modelAttribute="course">
 			<form:label path="name">Name</form:label>
 			<form:input path="name" />
 
 			<form:label path="dateOfServing">When</form:label>
 			<form:input path="dateOfServing" />
+
+			<form:label path="canteen">Kantine</form:label>
+<%-- 			<form:select path="canteen" items="${canteens}" itemValue="id" itemLabel="name" /> --%>
+			<form:select path="canteen">
+				<form:option value="null" label="Select..." />
+				<form:options items="${canteens}" itemValue="id" itemLabel="name" />
+			</form:select>
 
 			<input type="submit" />
 		</form:form>
