@@ -7,10 +7,10 @@
 	<pre>${canteen.contact}</pre>
 	<a href="${restaurant.homepage}">homePage</a>
 	<br />
-	Courses:
-	<c:forEach var="course" items="${canteen.courses}">
+	Meals:
+	<c:forEach var="meal" items="${canteen.meals}">
 		<br />
-		<c:out value="${course.name}"/>
+		<c:out value="${meal.name}"/>
 	</c:forEach>
 </div>
 <hr />

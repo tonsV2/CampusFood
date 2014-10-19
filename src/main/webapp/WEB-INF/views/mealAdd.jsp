@@ -30,8 +30,8 @@ input[type="submit"] {
 	</head>
 	<body>
 
-		<h3>Add course</h3>
-		<form:form method="post" modelAttribute="course">
+		<h3>Add meal</h3>
+		<form:form method="post" modelAttribute="meal">
 			<form:label path="name">Name</form:label>
 			<form:input path="name" />
 

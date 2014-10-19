@@ -34,7 +34,7 @@ public class Canteen extends BaseEntity {
 	private String contact;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<Course> courses = new HashSet<>();
+	private Set<Meal> meals = new HashSet<>();
 
 	public Canteen() {
 	}
@@ -46,12 +46,12 @@ public class Canteen extends BaseEntity {
 		this.contact = contact;
 	}
 
-	public Canteen(String name, String address, String openingHours, String contact, Set<Course> courses) {
+	public Canteen(String name, String address, String openingHours, String contact, Set<Meal> meals) {
 		this.name = name;
 		this.address = address;
 		this.openingHours = openingHours;
 		this.contact = contact;
-		this.courses = courses;
+		this.meals = meals;
 	}
 
 
@@ -83,18 +83,18 @@ public class Canteen extends BaseEntity {
 		this.contact = contact;
 	}
 
-	public Set<Course> getCourses() {
-		return courses;
+	public Set<Meal> getMeals() {
+		return meals;
 	}
-	public void setCourses(Set<Course> courses) {
-		this.courses = courses;
+	public void setMeals(Set<Meal> meals) {
+		this.meals = meals;
 	}
 
-	public boolean addCourse(Course course)
+	public boolean addMeal(Meal meal)
 	{
-		// TODO: is this right?
-		course.setCanteen(this);
-		return getCourses().add(course);
+		// TODO: is this right? Or rather should this be nessecary?
+		meal.setCanteen(this);
+		return getMeals().add(meal);
 	}
 
 	@Override

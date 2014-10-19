@@ -17,27 +17,27 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import dk.fitfit.campusfood.config.PersistenceConfig;
 import dk.fitfit.campusfood.model.Canteen;
-import dk.fitfit.campusfood.model.Course;
+import dk.fitfit.campusfood.model.Meal;
 import dk.fitfit.campusfood.repository.CanteenRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = PersistenceConfig.class)
-public class CanteenHasCoursesTest {
+public class CanteenHasMealsTest {
 
 	@Autowired
 	private CanteenRepository canteenRepository;
 	private String canteenName;
-	private String courseName;
+	private String mealName;
 	private Canteen canteen;
-	private Course course0;
-	private Course course1;
+	private Meal meal0;
+	private Meal meal1;
 
 	@Before
 	public void setUp() {
 		// Generate unique random name
 		canteenName = UUID.randomUUID().toString();
 		// Generate unique random name
-		courseName = UUID.randomUUID().toString();
+		mealName = UUID.randomUUID().toString();
 
 		// Create new canteen
 		canteen = new Canteen();
@@ -45,21 +45,21 @@ public class CanteenHasCoursesTest {
 
 		Date dateOfServing = new Date();
 
-		// Create new course
-		course0 = new Course();
-		course0.setName(courseName);
-		course0.setDateOfServing(dateOfServing);
+		// Create new meal
+		meal0 = new Meal();
+		meal0.setName(mealName);
+		meal0.setDateOfServing(dateOfServing);
 
-		// Create another new course
-		course1 = new Course();
-		course1.setName(courseName);
-		course1.setDateOfServing(dateOfServing);
+		// Create another new meal
+		meal1 = new Meal();
+		meal1.setName(mealName);
+		meal1.setDateOfServing(dateOfServing);
 	}
 
 	@Test
-	public void addCourseToCanteenTest() {
-		// Add course
-		canteen.addCourse(course0);
+	public void addMealToCanteenTest() {
+		// Add meal
+		canteen.addMeal(meal0);
 
 		// Save canteen
 		canteenRepository.save(canteen);
@@ -70,26 +70,26 @@ public class CanteenHasCoursesTest {
 		// Confirm attributes are as expected
 		assertNotNull(c);
 
-		Set<Course> courses = c.getCourses();
-		Iterator<Course> it = courses.iterator();
+		Set<Meal> meals = c.getMeals();
+		Iterator<Meal> it = meals.iterator();
 		assertTrue(it.hasNext());
 
-		Course course = it.next();
-		assertEquals(courseName, course.getName());
+		Meal meal = it.next();
+		assertEquals(mealName, meal.getName());
 	}
 
 	// TODO: expect some data violation exception
 //	@Test(expected = IndexOutOfBoundsException.class)
 	@Test
-	public void addDuplicatedCourseToCanteenTest() {
-		// Add course
-		boolean add0 = canteen.addCourse(course0);
+	public void addDuplicatedMealToCanteenTest() {
+		// Add meal
+		boolean add0 = canteen.addMeal(meal0);
 //		System.out.println("add: " + add0);
-//		System.out.println("canteen.getCourses().size: " + canteen.getCourses().size());
+//		System.out.println("canteen.getMeals().size: " + canteen.getMeals().size());
 		// Add it again
-		boolean add1 = canteen.addCourse(course1);
+		boolean add1 = canteen.addMeal(meal1);
 //		System.out.println("add: " + add1);
-//		System.out.println("canteen.getCourses().size: " + canteen.getCourses().size());
+//		System.out.println("canteen.getMeals().size: " + canteen.getMeals().size());
 		// TODO: this is basically just a test confirming that java.util.set works... :(
 		assertFalse(add1);
 		// Save canteen
@@ -100,10 +100,10 @@ public class CanteenHasCoursesTest {
 	public void tearDown() {
 		canteenRepository = null;
 		canteenName = null;
-		courseName = null;
+		mealName = null;
 		canteen = null;
-		course0 = null;
-		course1 = null;
+		meal0 = null;
+		meal1 = null;
 	}
 
 }

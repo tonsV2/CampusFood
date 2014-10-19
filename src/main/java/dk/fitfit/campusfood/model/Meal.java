@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import dk.fitfit.campusfood.utils.DateUtil;
 
 @Entity
-public class Course extends BaseEntity {
+public class Meal extends BaseEntity {
 	private String name;
 	private Date dateOfServing;
 
@@ -56,7 +56,7 @@ public class Course extends BaseEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Course other = (Course) obj;
+		Meal other = (Meal) obj;
 		if (canteen == null) {
 			if (other.canteen != null)
 				return false;

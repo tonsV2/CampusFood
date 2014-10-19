@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import;
 
 import dk.fitfit.campusfood.config.PersistenceConfig;
 import dk.fitfit.campusfood.model.Canteen;
-import dk.fitfit.campusfood.model.Course;
+import dk.fitfit.campusfood.model.Meal;
 import dk.fitfit.campusfood.repository.CanteenRepository;
 
 @Import(PersistenceConfig.class)	// Without the import CanteenRepository isn't found
@@ -28,15 +28,15 @@ public class DataInitializer {
 		String contact = "Kontakt... someone.";
 		Canteen canteen = new Canteen(name, address, openingHours, contact);
 
-		Course course = new Course();
-		course.setName("Pasta");
-		course.setDateOfServing(new Date());
-		canteen.addCourse(course);
+		Meal meal = new Meal();
+		meal.setName("Pasta");
+		meal.setDateOfServing(new Date());
+		canteen.addMeal(meal);
 
-		Course course1 = new Course();
-		course1.setName("Pasta something");
-		course1.setDateOfServing(new Date());
-		canteen.addCourse(course1);
+		Meal meal1 = new Meal();
+		meal1.setName("Pasta something");
+		meal1.setDateOfServing(new Date());
+		canteen.addMeal(meal1);
 
 		Canteen c = canteenRepository.save(canteen);
 	}

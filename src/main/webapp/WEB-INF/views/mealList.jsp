@@ -5,10 +5,10 @@
 		<title>Home</title>
 	</head>
 	<body>
-		<c:forEach var="course" items="${courses}" varStatus="loop">
+		<c:forEach var="meal" items="${meals}" varStatus="loop">
 			<div>
-				<h3><c:out value="${course.name}" /></h3>
-				<a href="<c:url value="/course/${course.id}" />">Details</a>
+				<h3><c:out value="${meal.name}" /></h3>
+				<a href="<c:url value="/meal/${meal.id}" />">Details</a>
 			</div>
 			<c:if test="${!loop.last}">
 				<hr />

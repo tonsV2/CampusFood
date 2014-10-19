@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import dk.fitfit.campusfood.model.Course;
+import dk.fitfit.campusfood.model.Meal;
 
 @Repository
-public interface CourseRepository extends CrudRepository<Course, Long>{
-	List<Course> findByCanteenId(long id);
-	List<Course> findAllByDateOfServing(Date date);
+public interface MealRepository extends CrudRepository<Meal, Long>{
+	List<Meal> findByCanteenId(long id);
+	List<Meal> findAllByDateOfServing(Date date);
 }

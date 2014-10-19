@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dk.fitfit.campusfood.model.Canteen;
-import dk.fitfit.campusfood.model.Course;
+import dk.fitfit.campusfood.model.Meal;
 import dk.fitfit.campusfood.repository.CanteenRepository;
-import dk.fitfit.campusfood.repository.CourseRepository;
+import dk.fitfit.campusfood.repository.MealRepository;
 import dk.fitfit.campusfood.utils.DateUtil;
 
 
@@ -25,18 +25,18 @@ public class ApiController {
 	private CanteenRepository canteenRepository;
 
 	@Autowired
-	private CourseRepository courseRepository;
+	private MealRepository mealRepository;
 
-	@RequestMapping(value = "/course/today")
-	public List<Course> sayHello() {
+	@RequestMapping(value = "/meals/today")
+	public List<Meal> sayHello() {
 //		initialize();
 		Date date = new Date();
 		date = DateUtil.removeTime(date);
-		// TODO: courseService!!!
-		return courseRepository.findAllByDateOfServing(date);
-//		return courseRepository.findAllByDateOfServing(new Date());
+		// TODO: MealService!!!
+		return mealRepository.findAllByDateOfServing(date);
+//		return mealRepository.findAllByDateOfServing(new Date());
 	}
-	
+
 	public void initialize()
 	{
 		String name = "Kantinen i something";
@@ -45,17 +45,17 @@ public class ApiController {
 		String contact = "Kontakt... someone.";
 		Canteen canteen = new Canteen(name, address, openingHours, contact);
 
-		Course course = new Course();
-		course.setName("Pasta");
-		course.setDateOfServing(new Date());
-		System.out.println("course: " + course.getDateOfServing());
-		canteen.addCourse(course);
+		Meal meal = new Meal();
+		meal.setName("Pasta");
+		meal.setDateOfServing(new Date());
+		System.out.println("meal: " + meal.getDateOfServing());
+		canteen.addMeal(meal);
 
-		Course course1 = new Course();
-		course1.setName("Pasta something");
-		course1.setDateOfServing(new Date());
-		System.out.println("course1: " + course1.getDateOfServing());
-		canteen.addCourse(course1);
+		Meal meal1 = new Meal();
+		meal1.setName("Pasta something");
+		meal1.setDateOfServing(new Date());
+		System.out.println("meal1: " + meal1.getDateOfServing());
+		canteen.addMeal(meal1);
 
 		Canteen c = canteenRepository.save(canteen);
 	}
