@@ -75,7 +75,7 @@ public class MealController {
 	public String mealsToday(Model model) {
 		Date date = new Date();
 		date = DateUtil.removeTime(date);
-		model.addAttribute("meals", mealRepository.findAllByDateOfServing(date));
+		model.addAttribute("meals", mealRepository.findByDateOfServing(date));
 //		model.addAttribute("meals", mealRepository.findAllByDateOfServing(new Date()));
 		return "mealList";
 	}
