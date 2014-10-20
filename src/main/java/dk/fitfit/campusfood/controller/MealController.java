@@ -3,6 +3,7 @@ package dk.fitfit.campusfood.controller;
 import java.util.Date;
 import java.util.Locale;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,7 @@ public class MealController {
 //		if (result.hasErrors()) {
 //			return "error";
 //		}
+		// TODO: Should be done by spring!
 		Canteen c = canteenRepository.findOne(canteen);
 		meal.setCanteen(c);
 
@@ -75,6 +77,12 @@ public class MealController {
 	@RequestMapping(value = "/meals/today", method = RequestMethod.GET)
 	public String mealsToday(Model model) {
 		model.addAttribute("meals", mealService.findByDateOfServing(new Date()));
+		return "mealList";
+	}
+
+	@RequestMapping(value = "/meals/tomorrow", method = RequestMethod.GET)
+	public String mealsTomorrow(Model model) {
+		model.addAttribute("meals", mealService.findByDateOfServing(new DateTime().plusDays(1).toDate()));
 		return "mealList";
 	}
 
