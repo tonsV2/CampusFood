@@ -8,14 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import dk.fitfit.campusfood.model.Canteen;
 import dk.fitfit.campusfood.model.Meal;
 import dk.fitfit.campusfood.repository.CanteenRepository;
 import dk.fitfit.campusfood.service.MealService;
@@ -42,14 +43,15 @@ public class MealController {
 	}
 
 	@RequestMapping(value = {"/meal"}, method = RequestMethod.POST)
-	public String submit(@ModelAttribute Meal meal, BindingResult result, ModelMap model) {
-		if (result.hasErrors()) {
-			return "error";
-		}
+	public String submit(@RequestParam long canteen, @ModelAttribute Meal meal, BindingResult result) {
+//		if (result.hasErrors()) {
+//			return "error";
+//		}
+		Canteen c = canteenRepository.findOne(canteen);
+		meal.setCanteen(c);
 
-		Meal c = mealService.create(meal);
-		model.addAttribute("meal", c);
-		return "redirect:/meal/" + c.getId();
+		Meal m = mealService.create(meal);
+		return "redirect:/meal/" + m.getId();
 	}
 
 	@RequestMapping(value = "/meal/{id}", method = RequestMethod.GET)

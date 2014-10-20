@@ -39,7 +39,6 @@ input[type="submit"] {
 			<form:input path="dateOfServing" />
 
 			<form:label path="canteen">Kantine</form:label>
-<%-- 			<form:select path="canteen" items="${canteens}" itemValue="id" itemLabel="name" /> --%>
 			<form:select path="canteen">
 				<form:option value="null" label="Select..." />
 				<form:options items="${canteens}" itemValue="id" itemLabel="name" />

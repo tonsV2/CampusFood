@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import dk.fitfit.campusfood.utils.DateUtil;
@@ -14,6 +15,7 @@ public class Meal extends BaseEntity {
 	private Date dateOfServing;
 
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(nullable = false)
 	private Canteen canteen;
 
 	public String getName() {
