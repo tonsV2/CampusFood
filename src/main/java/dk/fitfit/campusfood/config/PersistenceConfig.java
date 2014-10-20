@@ -1,17 +1,15 @@
 package dk.fitfit.campusfood.config;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -27,32 +25,31 @@ import org.springframework.transaction.PlatformTransactionManager;
 @EnableJpaRepositories(basePackages = {"dk.fitfit.campusfood.model", "dk.fitfit.campusfood.repository"})
 public class PersistenceConfig {
 	private static final Logger logger = LoggerFactory.getLogger(PersistenceConfig.class);
-	
-	@Autowired
-	private Environment env;
 
 	private final String packagesToScan = "dk.fitfit.campusfood.*";
 
 	@Value("${jdbc.driverClassName}")
 	private String snot;
 
+	@Value("${jdbc.port}")
+	private String port;
+
+
 	public PersistenceConfig() {
 		logger.info("Persistence config loaded!");
-		logger.info("psnot: {}", snot);
-		logger.info("penv: {}", env);
-
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-		context.refresh();
-		env = context.getEnvironment();
-
-		logger.info("penv: {}", env);
-		logger.info("penv.snot: {}", env.getProperty("jdbc.host"));
 	}
 
-//	@Bean
-//	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-//		return new PropertySourcesPlaceholderConfigurer();
-//	}
+	@PostConstruct
+	public void initializeData()
+	{
+		logger.info("isnot: {}", snot);
+		logger.info("iport: {}", port);
+	}
+
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
 
 	@Bean
 	public DataSource dataSource() {
