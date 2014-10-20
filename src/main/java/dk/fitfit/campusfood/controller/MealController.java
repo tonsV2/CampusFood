@@ -18,8 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dk.fitfit.campusfood.model.Meal;
 import dk.fitfit.campusfood.repository.CanteenRepository;
-import dk.fitfit.campusfood.repository.MealRepository;
-import dk.fitfit.campusfood.utils.DateUtil;
+import dk.fitfit.campusfood.service.MealService;
 
 
 @Controller
@@ -27,7 +26,7 @@ public class MealController {
 	private static final Logger logger = LoggerFactory.getLogger(CanteenController.class);
 
 	@Autowired
-	private MealRepository mealRepository;
+	private MealService mealService;
 
 	@Autowired
 	private CanteenRepository canteenRepository;
@@ -48,35 +47,32 @@ public class MealController {
 			return "error";
 		}
 
-		Meal c = mealRepository.save(meal);
+		Meal c = mealService.create(meal);
 		model.addAttribute("meal", c);
 		return "redirect:/meal/" + c.getId();
 	}
 
 	@RequestMapping(value = "/meal/{id}", method = RequestMethod.GET)
 	public String mealDetails(Model model, @PathVariable long id) {
-		model.addAttribute("meal", mealRepository.findOne(id));
+		model.addAttribute("meal", mealService.findOne(id));
 		return "mealDetails";
 	}
 
 	@RequestMapping(value = "/meals", method = RequestMethod.GET)
 	public ModelAndView mealList(Locale locale, Model model) {
-		return new ModelAndView("mealList", "meals", mealRepository.findAll());
+		return new ModelAndView("mealList", "meals", mealService.findAll());
 	}
 
 	// TODO: no output... unless meal.setCanteen(this); is used in Canteen.addMeal()
 	@RequestMapping(value = "/canteen/{id}/meals", method = RequestMethod.GET)
 	public String mealsByCanteen(Model model, @PathVariable long id) {
-		model.addAttribute("meals", mealRepository.findByCanteenId(id));
+		model.addAttribute("meals", mealService.findByCanteenId(id));
 		return "mealList";
 	}
 
 	@RequestMapping(value = "/meals/today", method = RequestMethod.GET)
 	public String mealsToday(Model model) {
-		Date date = new Date();
-		date = DateUtil.removeTime(date);
-		model.addAttribute("meals", mealRepository.findByDateOfServing(date));
-//		model.addAttribute("meals", mealRepository.findAllByDateOfServing(new Date()));
+		model.addAttribute("meals", mealService.findByDateOfServing(new Date()));
 		return "mealList";
 	}
 
