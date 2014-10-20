@@ -32,13 +32,12 @@ public class CanteenController {
 	}
 
 	@RequestMapping(value = {"/canteen"}, method = RequestMethod.POST)
-	public String submit(@ModelAttribute Canteen canteen, BindingResult result, ModelMap model) {
+	public String submit(@ModelAttribute Canteen canteen, BindingResult result) {
 		if (result.hasErrors()) {
 			return "error";
 		}
 
 		Canteen c = canteenRepository.save(canteen);
-		model.addAttribute("canteen", c);
 		return "redirect:/canteen/" + c.getId();
 	}
 
