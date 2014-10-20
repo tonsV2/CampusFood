@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dk.fitfit.campusfood.model.Meal;
-import dk.fitfit.campusfood.repository.MealRepository;
-import dk.fitfit.campusfood.utils.DateUtil;
+import dk.fitfit.campusfood.service.MealService;
 
 
 @RestController
@@ -20,14 +19,10 @@ public class ApiController {
 	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
 
 	@Autowired
-	private MealRepository mealRepository;
+	private MealService mealService;
 
 	@RequestMapping(value = "/meals/today")
 	public List<Meal> mealsToday() {
-		Date date = new Date();
-		date = DateUtil.removeTime(date);
-		// TODO: MealService!!!
-		return mealRepository.findByDateOfServing(date);
-//		return mealRepository.findByDateOfServing(new Date());
+		return mealService.findByDateOfServing(new Date());
 	}
 }
