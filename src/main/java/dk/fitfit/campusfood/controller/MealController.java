@@ -44,9 +44,9 @@ public class MealController {
 
 	@RequestMapping(value = {"/meal"}, method = RequestMethod.POST)
 	public String submit(@ModelAttribute Meal meal, BindingResult result, ModelMap model) {
-//		if (result.hasErrors()) {
-//			return "error";
-//		}
+		if (result.hasErrors()) {
+			return "error";
+		}
 
 		Meal c = mealRepository.save(meal);
 		model.addAttribute("meal", c);
