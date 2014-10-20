@@ -3,14 +3,13 @@ package dk.fitfit.campusfood.utils;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Component;
 
-import dk.fitfit.campusfood.config.PersistenceConfig;
 import dk.fitfit.campusfood.model.Canteen;
 import dk.fitfit.campusfood.model.Meal;
 import dk.fitfit.campusfood.repository.CanteenRepository;
 
-@Import(PersistenceConfig.class)	// Without the import CanteenRepository isn't found
+@Component
 public class DataInitializer {
 
 	@Autowired
