@@ -84,7 +84,7 @@ public class MealController {
 		return "mealList";
 	}
 
-	@RequestMapping(value = "/meals/week")
+	@RequestMapping(value = "/meals/thisweek")
 	public String mealsThisWeek(Model model) {
 		model.addAttribute("meals", mealService.findMealsThisWeek());
 		return "mealList";
