@@ -74,15 +74,27 @@ public class MealController {
 		return "mealList";
 	}
 
-	@RequestMapping(value = "/meals/today", method = RequestMethod.GET)
+	@RequestMapping(value = "/meals/today")
 	public String mealsToday(Model model) {
-		model.addAttribute("meals", mealService.findByDateOfServing(new Date()));
+		model.addAttribute("meals", mealService.findMealsToday());
 		return "mealList";
 	}
 
-	@RequestMapping(value = "/meals/tomorrow", method = RequestMethod.GET)
+	@RequestMapping(value = "/meals/tomorrow")
 	public String mealsTomorrow(Model model) {
-		model.addAttribute("meals", mealService.findByDateOfServing(new DateTime().plusDays(1).toDate()));
+		model.addAttribute("meals", mealService.findMealsTomorrow());
+		return "mealList";
+	}
+
+	@RequestMapping(value = "/meals/week")
+	public String mealsThisWeek(Model model) {
+		model.addAttribute("meals", mealService.findMealsThisWeek());
+		return "mealList";
+	}
+
+	@RequestMapping(value = "/meals/week/{week}")
+	public String mealsByWeek(Model model, @PathVariable int week) {
+		model.addAttribute("meals", mealService.findMealsByWeek(week));
 		return "mealList";
 	}
 

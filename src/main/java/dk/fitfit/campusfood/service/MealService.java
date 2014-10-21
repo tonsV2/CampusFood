@@ -3,6 +3,8 @@ package dk.fitfit.campusfood.service;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,4 +56,34 @@ public class MealService {
 		return mealRepository.findByDateOfServing(date);
 	}
 
+	public List<Meal> findMealsToday()
+	{
+		Date date = DateUtil.removeTime(new Date());
+		return mealRepository.findByDateOfServing(date);
+	}
+
+	public List<Meal> findMealsTomorrow()
+	{
+		Date date = DateUtil.removeTime(new DateTime().plusDays(1).toDate());
+		return mealRepository.findByDateOfServing(date);
+	}
+
+	// TODO: this method should actually take advantage of {@link findMealsByWeek}. However getting
+	//		the week number from a date... takes too much googling.
+	public List<Meal> findMealsThisWeek()
+	{
+		LocalDate today = new LocalDate();
+		LocalDate weekStart = today.dayOfWeek().withMinimumValue();
+		LocalDate weekEnd = today.dayOfWeek().withMaximumValue();
+		return mealRepository.findByDateOfServingBetween(weekStart.toDate(), weekEnd.toDate());
+	}
+
+	public List<Meal> findMealsByWeek(int week)
+	{
+		int dayOfYear = week * 7;
+		LocalDate today = new LocalDate().withDayOfYear(dayOfYear);
+		LocalDate weekStart = today.dayOfWeek().withMinimumValue();
+		LocalDate weekEnd = today.dayOfWeek().withMaximumValue();
+		return mealRepository.findByDateOfServingBetween(weekStart.toDate(), weekEnd.toDate());
+	}
 }

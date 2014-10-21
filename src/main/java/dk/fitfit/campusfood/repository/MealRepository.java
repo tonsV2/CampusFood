@@ -12,4 +12,5 @@ import dk.fitfit.campusfood.model.Meal;
 public interface MealRepository extends CrudRepository<Meal, Long>{
 	List<Meal> findByCanteenId(long id);
 	List<Meal> findByDateOfServing(Date date);
+	List<Meal> findByDateOfServingBetween(Date begin, Date end);
 }
