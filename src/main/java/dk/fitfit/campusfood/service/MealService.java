@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dk.fitfit.campusfood.controller.CanteenController;
 import dk.fitfit.campusfood.model.Meal;
 import dk.fitfit.campusfood.repository.MealRepository;
 import dk.fitfit.campusfood.utils.DateUtil;
@@ -17,6 +18,8 @@ import dk.fitfit.campusfood.utils.DateUtil;
 
 @Service
 public class MealService {
+	private static final Logger logger = LoggerFactory.getLogger(MealService.class);
+
 	@Autowired
 	private MealRepository mealRepository;
 
@@ -72,18 +75,15 @@ public class MealService {
 
 	public List<Meal> findMealsByWeek(int week)
 	{
-		int dayOfYear = week * 7;
-		LocalDate today = new LocalDate().withDayOfYear(dayOfYear);
-		LocalDate weekStart = today.dayOfWeek().withMinimumValue();
-		LocalDate weekEnd = today.dayOfWeek().withMaximumValue();
+		LocalDate date = new LocalDate().withWeekOfWeekyear(week);
+		LocalDate weekStart = date.dayOfWeek().withMinimumValue();
+		LocalDate weekEnd = date.dayOfWeek().withMaximumValue();
 		return mealRepository.findByDateOfServingBetween(weekStart.toDate(), weekEnd.toDate());
 	}
 
 	public List<Meal> findMealsThisWeek()
 	{
-		LocalDate today = new LocalDate();
-		int dayOfYear = today.dayOfYear().get();
-		int week = dayOfYear / 7;
+		int week = new LocalDate().getWeekOfWeekyear();
 		return findMealsByWeek(week);
 	}
 }
