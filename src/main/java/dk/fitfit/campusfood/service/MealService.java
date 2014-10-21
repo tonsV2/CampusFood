@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import dk.fitfit.campusfood.utils.DateUtil;
 
 @Service
 public class MealService {
+	private static final Logger logger = LoggerFactory.getLogger(MealService.class);
+
 	@Autowired
 	private MealRepository mealRepository;
 
@@ -68,16 +72,6 @@ public class MealService {
 		return mealRepository.findByDateOfServing(date);
 	}
 
-	// TODO: this method should actually take advantage of {@link findMealsByWeek}. However getting
-	//		the week number from a date... takes too much googling.
-	public List<Meal> findMealsThisWeek()
-	{
-		LocalDate today = new LocalDate();
-		LocalDate weekStart = today.dayOfWeek().withMinimumValue();
-		LocalDate weekEnd = today.dayOfWeek().withMaximumValue();
-		return mealRepository.findByDateOfServingBetween(weekStart.toDate(), weekEnd.toDate());
-	}
-
 	public List<Meal> findMealsByWeek(int week)
 	{
 		int dayOfYear = week * 7;
@@ -85,5 +79,13 @@ public class MealService {
 		LocalDate weekStart = today.dayOfWeek().withMinimumValue();
 		LocalDate weekEnd = today.dayOfWeek().withMaximumValue();
 		return mealRepository.findByDateOfServingBetween(weekStart.toDate(), weekEnd.toDate());
+	}
+
+	public List<Meal> findMealsThisWeek()
+	{
+		LocalDate today = new LocalDate().plusWeeks(2);
+		int dayOfYear = today.dayOfYear().get();
+		int week = dayOfYear / 7;
+		return findMealsByWeek(week);
 	}
 }
