@@ -17,8 +17,6 @@ import dk.fitfit.campusfood.utils.DateUtil;
 
 @Service
 public class MealService {
-	private static final Logger logger = LoggerFactory.getLogger(MealService.class);
-
 	@Autowired
 	private MealRepository mealRepository;
 
@@ -83,7 +81,7 @@ public class MealService {
 
 	public List<Meal> findMealsThisWeek()
 	{
-		LocalDate today = new LocalDate().plusWeeks(2);
+		LocalDate today = new LocalDate();
 		int dayOfYear = today.dayOfYear().get();
 		int week = dayOfYear / 7;
 		return findMealsByWeek(week);
