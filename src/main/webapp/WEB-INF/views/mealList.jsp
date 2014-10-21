@@ -5,6 +5,9 @@
 		<title>Home</title>
 	</head>
 	<body>
+		<c:if test="${empty meals}">
+			<p>No meals found!</p>
+		</c:if>
 		<c:forEach var="meal" items="${meals}" varStatus="loop">
 			<div>
 				<h3><c:out value="${meal.name}" /></h3>
