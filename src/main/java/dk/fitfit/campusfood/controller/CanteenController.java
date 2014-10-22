@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dk.fitfit.campusfood.model.Canteen;
 import dk.fitfit.campusfood.repository.CanteenRepository;
+import dk.fitfit.campusfood.utils.DataInitializer;
 
 
 @Controller
@@ -25,6 +26,10 @@ public class CanteenController {
 
 	@Autowired
 	private CanteenRepository canteenRepository;
+
+	@Autowired
+	private DataInitializer dataInitializer;
+
 
 	@RequestMapping(value = "/canteen", method = RequestMethod.GET)
 	public ModelAndView canteenAdd() {
@@ -50,6 +55,12 @@ public class CanteenController {
 	@RequestMapping(value = "/canteens", method = RequestMethod.GET)
 	public ModelAndView canteenList(Locale locale, Model model) {
 		return new ModelAndView("canteenList", "canteens", canteenRepository.findAll());
+	}
+
+	@RequestMapping(value = "/initialize")
+	public String initialize() {
+		dataInitializer.initialize();
+		return "redirect:/canteens";
 	}
 
 }
