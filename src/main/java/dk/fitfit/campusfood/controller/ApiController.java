@@ -29,17 +29,17 @@ public class ApiController {
 	}
 	
 	@RequestMapping(value = "/meals/tomorrow")
-	public List<Meal> mealsTomorrow(Model model) {
+	public List<Meal> mealsTomorrow() {
 		return mealService.findMealsTomorrow();
 	}
 
 	@RequestMapping(value = "/meals/thisweek")
-	public List<Meal> mealsThisWeek(Model model) {
+	public List<Meal> mealsThisWeek() {
 		return mealService.findMealsThisWeek();
 	}
 
 	@RequestMapping(value = "/meals/week/{week}")
-	public List<Meal> mealsByWeek(Model model, @PathVariable int week) {
+	public List<Meal> mealsByWeek(@PathVariable int week) {
 		return mealService.findMealsByWeek(week);
 	}
 
