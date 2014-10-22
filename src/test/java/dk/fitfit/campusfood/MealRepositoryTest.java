@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -36,17 +37,17 @@ public class MealRepositoryTest {
 		meal.setName(mealName);
 	}
 
-	@Test
-	public void insertTest() {
+	@Test(expected = DataIntegrityViolationException.class)
+	public void insertWithoutCanteenTest() {
 		// Save canteen
 		mealRepository.save(meal);
 
-		// Find it again
-		Meal c = mealRepository.findOne(meal.getId());
-
-		// Confirm attributes are as expected
-		assertNotNull(c);
-		assertEquals(mealName, c.getName());
+//		// Find it again
+//		Meal c = mealRepository.findOne(meal.getId());
+//
+//		// Confirm attributes are as expected
+//		assertNotNull(c);
+//		assertEquals(mealName, c.getName());
 	}
 	
 	@After
