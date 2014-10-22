@@ -12,6 +12,8 @@ import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+// TODO: validate fields... name, address... and most others can't be empty.
+
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "address"}))
 @Entity
 public class Canteen extends BaseEntity {

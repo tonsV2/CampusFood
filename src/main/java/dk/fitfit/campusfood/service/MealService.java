@@ -15,6 +15,7 @@ import dk.fitfit.campusfood.model.Meal;
 import dk.fitfit.campusfood.repository.MealRepository;
 import dk.fitfit.campusfood.utils.DateUtil;
 
+// TODO: rethink entire Date zero issue... use jodatime with Entity as well?
 
 @Service
 public class MealService {
@@ -61,12 +62,14 @@ public class MealService {
 		return mealRepository.findByDateOfServing(date);
 	}
 
+	// TODO: use LocalDate and avoid DateUtil.removeTime
 	public List<Meal> findMealsToday()
 	{
 		Date date = DateUtil.removeTime(new Date());
 		return mealRepository.findByDateOfServing(date);
 	}
 
+	// TODO: use LocalDate and avoid DateUtil.removeTime
 	public List<Meal> findMealsTomorrow()
 	{
 		Date date = DateUtil.removeTime(new DateTime().plusDays(1).toDate());
