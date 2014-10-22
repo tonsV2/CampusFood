@@ -37,8 +37,8 @@ public class CanteenController {
 			return "error";
 		}
 
-		Canteen c = canteenRepository.save(canteen);
-		return "redirect:/canteen/" + c.getId();
+		canteenRepository.save(canteen);
+		return "redirect:/canteen/" + canteen.getId();
 	}
 
 	@RequestMapping(value = "/canteen/{id}", method = RequestMethod.GET)
