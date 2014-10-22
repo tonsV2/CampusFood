@@ -7,9 +7,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "address"}))
 @Entity
 public class Canteen extends BaseEntity {
 	private String name;
