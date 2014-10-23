@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+label {
+	display: inline-block;
+	float: left;
+	clear: left;
+	width: 10%;
+	text-align: left;
+}
+
+input, textarea {
+	display: inline-block;
+	float: left;
+}
+
+input[type="submit"] {
+	clear: left;
+}
