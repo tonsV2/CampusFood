@@ -8,7 +8,7 @@ label {
 	text-align: left;
 }
 
-input, textarea {
+input, textarea, select {
 	display: inline-block;
 	float: left;
 }
