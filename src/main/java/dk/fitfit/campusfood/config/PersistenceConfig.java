@@ -38,7 +38,6 @@ public class PersistenceConfig {
 
 	private final String packagesToScan = "dk.fitfit.campusfood";
 
-
 	public PersistenceConfig() throws ClassNotFoundException {
 		logger.info("PersistenceConfig loaded!");
 		Class.forName("org.postgresql.Driver");
@@ -55,13 +54,12 @@ public class PersistenceConfig {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
 
-//	@Bean
-//	public DataSource dataSource() {
-//		logger.info(">>>>>>>>>>>>>>>>>>>>>>PersistenceConfig.dataSource()");
-//		return new EmbeddedDatabaseBuilder()
-//			.setType(EmbeddedDatabaseType.H2)
-//			.build();
-//	}
+	@Bean
+	public DataSource dataSource() {
+		return new EmbeddedDatabaseBuilder()
+			.setType(EmbeddedDatabaseType.H2)
+			.build();
+	}
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
@@ -111,16 +109,11 @@ public class PersistenceConfig {
 		private String url = System.getenv("OPENSHIFT_POSTGRESQL_DB_URL") + "/" + database;
 //		private String url = env.getRequiredProperty("OPENSHIFT_POSTGRESQL_DB_URL") + "/" + database;
 
-		@PostConstruct
-		public void postConstructor()
-		{
-			logger.info("OpenShiftPersistenceConfig loaded!");
-		}
-
 		@Bean
 		public DataSource dataSource()
 		{
 			logger.info(">>>>>>>>>>>>>>>>>>>>>>OpenShiftPersistenceConfig.dataSource()");
+			logger.info("dataSource()");
 			BasicDataSource dataSource = new BasicDataSource();
 			dataSource.setDriverClassName(driverClassName);
 			dataSource.setUrl(url);
