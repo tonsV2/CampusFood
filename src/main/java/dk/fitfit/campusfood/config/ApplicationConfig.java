@@ -10,27 +10,30 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-
-import dk.fitfit.campusfood.utils.DataInitializer;
+import org.springframework.core.env.Environment;
 
 
 @Configuration
-@ComponentScan(value = "dk.fitfit.campusfood.*")
+@ComponentScan(value = "dk.fitfit.campusfood")
 @PropertySource("classpath:application.properties")
 public class ApplicationConfig {
 	private static final Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
 
+//	@Autowired
+//	private DataInitializer dataInitializer;
+	
 	@Autowired
-	private DataInitializer dataInitializer;
+	private Environment env;
 
 	public ApplicationConfig() {
 		logger.info("Application config loaded!");
 	}
 
 	@PostConstruct
-	public void initializeData()
+	public void postConstructor()
 	{
-		dataInitializer.initialize();
+//		dataInitializer.initialize();
+		logger.info("env.getActiveProfiles(): {}", env.getActiveProfiles());
 	}
 	
 	@Bean
