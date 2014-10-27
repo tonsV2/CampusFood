@@ -40,7 +40,6 @@ public class PersistenceConfig {
 
 	public PersistenceConfig() throws ClassNotFoundException {
 		logger.info("PersistenceConfig loaded!");
-		Class.forName("org.postgresql.Driver");
 	}
 
 	@PostConstruct
