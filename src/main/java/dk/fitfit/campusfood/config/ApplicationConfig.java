@@ -33,16 +33,9 @@ public class ApplicationConfig {
 	public void postConstructor()
 	{
 //		dataInitializer.initialize();
-		logger.info("env.getActiveProfiles(): {}", env.getActiveProfiles());
+//		logger.info("env.getActiveProfiles(): {}", env.getActiveProfiles());
 	}
 
-//	@PostConstruct
-//	public void initializeData()
-//	{
-//		dataInitializer.initialize();
-//	}
-
-	
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();

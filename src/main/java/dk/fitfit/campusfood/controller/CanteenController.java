@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,12 +30,12 @@ public class CanteenController {
 	private DataInitializer dataInitializer;
 
 
-	@RequestMapping(value = "/canteen", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/canteen", method = RequestMethod.GET)
 	public ModelAndView canteenAdd() {
 		return new ModelAndView("canteenAdd", "canteen", new Canteen());
 	}
 
-	@RequestMapping(value = {"/canteen"}, method = RequestMethod.POST)
+	@RequestMapping(value = {"/admin/canteen"}, method = RequestMethod.POST)
 	public String submit(@ModelAttribute Canteen canteen, BindingResult result) {
 		if (result.hasErrors()) {
 			return "error";

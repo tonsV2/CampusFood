@@ -31,17 +31,18 @@ public class MealController {
 	@Autowired
 	private CanteenRepository canteenRepository;
 
-	@RequestMapping(value = "/meal", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/meal", method = RequestMethod.GET)
 //	public ModelAndView mealAdd() {
 //		return new ModelAndView("mealAdd", "meal", new Meal());
 //	}
 	public String mealAdd(Model model) {
+		logger.info("/meal");
 		model.addAttribute("meal", new Meal());
 		model.addAttribute("canteens", canteenRepository.findAll());
 		return "mealAdd";
 	}
 
-	@RequestMapping(value = {"/meal"}, method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/meal", method = RequestMethod.POST)
 	public String submit(@RequestParam long canteen, @ModelAttribute Meal meal, BindingResult result) {
 //		if (result.hasErrors()) {
 //			return "error";

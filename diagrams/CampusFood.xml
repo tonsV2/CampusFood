@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
 	<entity>
-		<entity-name>dk.fitfit.campusfood.model.BaseEntity</entity-name>
+		<entity-name>dk.fitfit.campusfood.model.User</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>128</entity-height>
-		<entity-X-Coordinate>317</entity-X-Coordinate>
-		<entity-Y-Coordinate>50</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>dk.fitfit.campusfood.model.Canteen</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>168</entity-height>
-		<entity-X-Coordinate>469</entity-X-Coordinate>
-		<entity-Y-Coordinate>262</entity-Y-Coordinate>
+		<entity-height>148</entity-height>
+		<entity-X-Coordinate>496</entity-X-Coordinate>
+		<entity-Y-Coordinate>130</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -25,8 +14,41 @@
 		<entity-name>dk.fitfit.campusfood.model.Meal</entity-name>
 		<entity-width>120</entity-width>
 		<entity-height>128</entity-height>
-		<entity-X-Coordinate>160</entity-X-Coordinate>
-		<entity-Y-Coordinate>282</entity-Y-Coordinate>
+		<entity-X-Coordinate>41</entity-X-Coordinate>
+		<entity-Y-Coordinate>261</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>dk.fitfit.campusfood.model.Role</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>70</entity-height>
+		<entity-X-Coordinate>496</entity-X-Coordinate>
+		<entity-Y-Coordinate>18</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>dk.fitfit.campusfood.model.BaseEntity</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>128</entity-height>
+		<entity-X-Coordinate>41</entity-X-Coordinate>
+		<entity-Y-Coordinate>18</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>dk.fitfit.campusfood.model.Canteen</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>168</entity-height>
+		<entity-X-Coordinate>277</entity-X-Coordinate>
+		<entity-Y-Coordinate>241</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
