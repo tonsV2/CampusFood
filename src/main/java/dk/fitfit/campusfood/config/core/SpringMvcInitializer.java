@@ -1,6 +1,8 @@
-package dk.fitfit.campusfood.config;
+package dk.fitfit.campusfood.config.core;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import dk.fitfit.campusfood.config.ApplicationConfig;
 
 public class SpringMvcInitializer extends
 		AbstractAnnotationConfigDispatcherServletInitializer {

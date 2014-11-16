@@ -23,21 +23,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String name)
 			throws UsernameNotFoundException {
-		logger.info("name: {}", name);
 		User user = userService.findUserByEmail(name);
 		if(user == null) {
 			logger.info("user == null");
 			// TODO: write proper message
 			throw new UsernameNotFoundException("Username " + name + " not found");
 		}
-
-		logger.info("user.getEmail: {}", user.getEmail());
-		logger.info("user.getRoles: {}", user.getRoles());
-		for(Role role : user.getRoles())
-		{
-			logger.info("role.name: {}", role.getName());
-		}
-
 		return new SecurityUser(user);
 	}
 

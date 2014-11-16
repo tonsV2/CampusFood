@@ -12,7 +12,6 @@ import dk.fitfit.campusfood.model.Role;
 import dk.fitfit.campusfood.model.User;
 
 public class SecurityUser extends User implements UserDetails {
-
 	private static final long serialVersionUID = 867280338717707274L;
 
 	public SecurityUser(User user) {
@@ -39,11 +38,6 @@ public class SecurityUser extends User implements UserDetails {
 			}
 		}
 		return authorities;
-	}
-
-	@Override
-	public String getPassword() {
-		return super.getPassword();
 	}
 
 	@Override

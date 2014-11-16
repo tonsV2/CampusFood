@@ -1,4 +1,4 @@
-package dk.fitfit.campusfood.config;
+package dk.fitfit.campusfood.config.core;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

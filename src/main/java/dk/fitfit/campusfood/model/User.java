@@ -9,12 +9,22 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import dk.fitfit.campusfood.config.SecurityConfig;
+
 
 @Entity
-// TODO: perhaps choose another name than user
-//@Table(name="\"user\"")
-@Table(name="users")
+@Table(name="users") // user is a reserved word in postgresql
 public class User extends BaseEntity {
+	@Transient
+	private static final Logger logger = LoggerFactory.getLogger(User.class);
+
 	private String name;
 
 	@Column(nullable=false, unique=true)

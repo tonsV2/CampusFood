@@ -3,6 +3,7 @@ package dk.fitfit.campusfood.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+
 @Entity
 public class Role extends BaseEntity {
 	@Column(nullable = false)
